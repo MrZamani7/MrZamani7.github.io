@@ -1,11 +1,11 @@
-title: Read The Docs Jekyll Theme
-description: Port of the Read the Docs theme to Jekyll to use with GitHub Pages.
-remote_theme: carlosperate/jekyll-theme-rtd
+title: دفترچه راهنمای زبیکس
+description: این دفترچه اطلاعات لازم برای نصب، پیکربندی و اجرای زبیکس نسخه 6.4 در بر می گیرد.
+remote_theme: MrZamani7/MrZamani7.github.io
 
 # Theme settings:
-site_author: Carlos Pereira Atencio
-repo_url: "https://github.com/carlosperate/jekyll-theme-rtd"
-edit_on_github: true
+site_author: Mr.Zamani
+repo_url: "https://github.com/MrZamani7/MrZamani7.github.io"
+edit_on_github: false
 github_docs_folder: true
 sticky_navigation: true
 prev_next_buttons_location: bottom
