@@ -1,10 +1,10 @@
 title: دفترچه راهنمای زبیکس
 description: این دفترچه اطلاعات لازم برای نصب، پیکربندی و اجرای زبیکس نسخه 6.4 در بر می گیرد.
-remote_theme: MrZamani7/MrZamani7.github.io
+remote_theme: Zabbixa/Zabbixa.github.io
 
 # Theme settings:
 site_author: Mr.Zamani
-repo_url: "https://github.com/MrZamani7/MrZamani7.github.io"
+repo_url: "https://github.com/Zabbixa/Zabbixa.github.io"
 edit_on_github: false
 github_docs_folder: true
 sticky_navigation: true
