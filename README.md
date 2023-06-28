@@ -1,1 +1,3 @@
-This Manual provides all necessary information to successfully install, configure, and run Zabbix 6.4.
+
+# دفترچه راهنمای زبیکس
+به راهنمای فارسی نرم افزار Zabbix خوش آمدید. این صفحات با هدف کمک به کاربران جهت انجام موفق امور مانیتورینگ ایجاد شده اند.
