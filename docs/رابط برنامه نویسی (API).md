@@ -4,7 +4,8 @@ title: رابط برنامه نویسی (API)
 nav_order: 19
 ---
 
-Overview
+# رابط برنامه نویسی (API)
+## بررسی اجمالی
 The Zabbix API allows you to programmatically retrieve and modify configuration of Zabbix and provides access to historical data. It is widely used to:
 
 Create new applications to work with Zabbix;
