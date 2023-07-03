@@ -19,9 +19,9 @@ nav_order: 19
 
 ## ساختار
 رابط برنامه نویسی از متدهایی تشکیل شده است که در گروه هایی به صورت APIهایی مجزا دسته بندی شده اند. هر کدام از متدها کار مشخصی انجام می دهد. برای مثال host.create که به گروه host API تعلق دارد برای ایجاد هاست جدید استفاده می شود. سابقا این APIهای زبیکس گاهی اوقات به عنوان "کلاس" نامیده می شوند.
-```c
-نکته: اکثر APIها دارای حداقل چهار متد هستند: getو createو update و delete به ترتیب برای دریافت، ایجاد، بروزرسانی و حذف اطلاعات استفاده می شوند؛ اما برخی از APIها ممکن است مجموعه کاملا متفاوتی از متدها را شامل شوند.
-```
+<dl><dt>
+نکته: اکثر APIها دارای حداقل چهار متد هستند: get و create و update و delete به ترتیب برای دریافت، ایجاد، بروزرسانی و حذف اطلاعات استفاده می شوند؛ اما برخی از APIها ممکن است مجموعه کاملا متفاوتی از متدها را شامل شوند.
+</dt><dl>
 
 ## Performing requests
 Once you have set up the frontend, you can use remote HTTP requests to call the API. To do that, you need to send HTTP POST requests to the api_jsonrpc.php file located in the frontend directory. For example, if your Zabbix frontend is installed under https://example.com/zabbix, an HTTP request to call the apiinfo.version method may look like this:
