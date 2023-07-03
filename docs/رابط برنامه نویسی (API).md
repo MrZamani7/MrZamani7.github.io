@@ -6,11 +6,12 @@ nav_order: 19
 
 # رابط برنامه نویسی (API)
 ## بررسی اجمالی
-The Zabbix API allows you to programmatically retrieve and modify configuration of Zabbix and provides access to historical data. It is widely used to:
+رابط برنامه نویسی زبیکس به شما این امکان را می دهد که به وسیله برنامه نویسی، پیکربندی زبیکس را اصلاح و ویرایش کنید و دسترسی به داده های تاریخی را فراهم می کند. به طور گسترده برای موارد زیر استفاده می شود:
 
-Create new applications to work with Zabbix;
-Integrate Zabbix into a third-party software;
-Automate routine tasks.
+- ساخت برنامه کاربردی جدید برای کار با زبیکس;
+- یکپارچگی زبیکس با یک نرم افزار شخص ثالث;
+- اتوماسیون کارهای روتین.
+
 The Zabbix API is an HTTP-based API, and it is shipped as a part of the web frontend. It uses the JSON-RPC 2.0 protocol, which means two things:
 
 The API consists of a set of separate methods.
