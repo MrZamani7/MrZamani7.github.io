@@ -6,23 +6,24 @@ nav_order: 19
 
 # رابط برنامه نویسی (API)
 ## بررسی اجمالی
-رابط برنامه نویسی زبیکس به شما این امکان را می دهد که به وسیله برنامه نویسی، پیکربندی زبیکس را اصلاح و ویرایش کنید و دسترسی به داده های تاریخی را فراهم می کند. به طور گسترده برای موارد زیر استفاده می شود:
+رابط برنامه نویسی زبیکس به شما این امکان را می دهد که به وسیله برنامه نویسی، پیکربندی زبیکس را دریافت و اصلاح کنید و دسترسی به داده های تاریخی را فراهم می کند. به طور گسترده برای موارد زیر استفاده می شود:
 
-- ساخت برنامه کاربردی جدید برای کار با زبیکس;
-- یکپارچگی زبیکس با یک نرم افزار شخص ثالث;
+- ساخت برنامه کاربردی جدید برای کار با زبیکس؛
+- یکپارچگی زبیکس با یک نرم افزار شخص ثالث؛
 - اتوماسیون کارهای روتین.
 
-The Zabbix API is an HTTP-based API, and it is shipped as a part of the web frontend. It uses the JSON-RPC 2.0 protocol, which means two things:
+رابط برنامه نویسی زبیکس بر پایه HTTP می باشد و به عنوان بخشی از رابط کاربری وب زبیکس منتشر شده است. از پروتکل JSON-RPC نسخه 2.0 استفاده می کند که این بدین معنی است:
 
-The API consists of a set of separate methods.
-Requests and responses between the clients and the API are encoded using the JSON format.
-More information about the protocol and JSON can be found in the JSON-RPC 2.0 specification and the JSON format homepage.
+- رابط برنامه نویسی از مجموعه متدهای (methods) مجزایی تشکیل شده است.
+- درخواست ها و پاسخ های رد و بدل شده بین کلاینت و API با فرمت JSON کدگذاری شده اند.
 
-Structure
-The API consists of a number of methods that are nominally grouped into separate APIs. Each of the methods performs one specific task. For example, the host.create method belongs to the host API and is used to create new hosts. Historically, APIs are sometimes referred to as "classes".
+## ساختار
+رابط برنامه نویسی از متدهایی تشکیل شده است که در گروه هایی به صورت APIهایی مجزا دسته بندی شده اند. هر کدام از متدها کار مشخصی انجام می دهد. برای مثال host.create که به گروه host API تعلق دارد برای ایجاد هاست جدید استفاده می شود. سابقا این APIهای زبیکس گاهی اوقات به عنوان "کلاس" نامیده می شوند.
+```
+نکته: اکثر APIها دارای حداقل چهار متد هستند: get، create، update و delete به ترتیب برای دریافت، ایجاد، بروزرسانی و حذف اطلاعات استفاده می شوند؛ اما برخی از APIها ممکن است مجموعه کاملا متفاوتی از متدها را شامل شوند.
+```
 
-Most APIs contain at least four methods: get, create, update and delete for retrieving, creating, updating and deleting data respectively, but some APIs may provide a totally different set of methods.
-Performing requests
+## Performing requests
 Once you have set up the frontend, you can use remote HTTP requests to call the API. To do that, you need to send HTTP POST requests to the api_jsonrpc.php file located in the frontend directory. For example, if your Zabbix frontend is installed under https://example.com/zabbix, an HTTP request to call the apiinfo.version method may look like this:
 
 curl --request POST \
