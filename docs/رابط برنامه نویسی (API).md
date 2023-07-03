@@ -23,13 +23,14 @@ nav_order: 19
 نکته: اکثر APIها دارای حداقل چهار متد هستند: get و create و update و delete به ترتیب برای دریافت، ایجاد، بروزرسانی و حذف اطلاعات استفاده می شوند؛ اما برخی از APIها ممکن است مجموعه کاملا متفاوتی از متدها را شامل شوند.
 </dt></dl>
 
-## Performing requests
-Once you have set up the frontend, you can use remote HTTP requests to call the API. To do that, you need to send HTTP POST requests to the api_jsonrpc.php file located in the frontend directory. For example, if your Zabbix frontend is installed under https://example.com/zabbix, an HTTP request to call the apiinfo.version method may look like this:
-
+## انجام درخواست ها
+به محض اینکه رابط کاربری زبیکس را راه اندازی کردید، می توانید با استفاده از HTTP requests رابط برنامه نویسی را صدا بزنید. برای این کار لازم است یک HTTP POST requests به فایل api_jsonrpc.php که در دایرکتوری رابط کاربری قرار گرفته است ارسال کنید. برای مثال اگر رابط کاربری در مسیر https://example.com/zabbix نصب شده است، یک HTTP request برای صدا زدن متد apiinfo.version شبیه مثال زیر است:
+'''js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Content-Type: application/json-rpc' \
   --data '{"jsonrpc":"2.0","method":"apiinfo.version","params":{},"id":1}'
+'''
 The request must have the Content-Type header set to one of these values: application/json-rpc, application/json or application/jsonrequest.
 
 The request object contains the following properties:
