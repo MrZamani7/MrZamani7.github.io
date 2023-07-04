@@ -26,7 +26,7 @@ nav_order: 19
 ## انجام درخواست ها
 به محض اینکه رابط کاربری زبیکس را راه اندازی کردید، می توانید با استفاده از HTTP requests رابط برنامه نویسی را صدا بزنید. برای این کار لازم است یک HTTP POST requests به فایل api_jsonrpc.php که در دایرکتوری رابط کاربری قرار گرفته است ارسال کنید. برای مثال اگر رابط کاربری در مسیر https://example.com/zabbix نصب شده است، یک HTTP request برای صدا زدن متد apiinfo.version شبیه مثال زیر است:
 
-<div dir="ltr">
+<div dir="ltr" markdown="1">
 
 ```js
 curl --request POST \
