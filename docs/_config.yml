@@ -10,4 +10,4 @@ github_docs_folder: true
 sticky_navigation: true
 prev_next_buttons_location: bottom
 search_enabled: true
-hljs_style: github-gist
+hljs_style: color-brewer
