@@ -158,4 +158,9 @@ td, th {
 body{
    font-family: 'Vazir', Calibri, sans-serif, Arial;
    font-weight:normal;
+   direction: rtl;
+}
+
+language-js{
+    direction: ltr;
 }
