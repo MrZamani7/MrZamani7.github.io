@@ -114,7 +114,7 @@ curl --request POST \
 ```
 
 #### به وسیله کوکی های زبیکس
-یک کوکی "zbx_session" جهت مجوز دهی به درخواستِ رابط کاربری زبیکس که توسط جاوااسکریپت پیادی سازی شده است می باشد (از طریق یک ماژول یا یک ویجت سفارشی).
+یک کوکی "zbx_session" جهت مجوز دهی به درخواستِ رابط کاربری زبیکس که توسط جاوا اسکریپت پیاده سازی شده است می باشد (از طریق یک ماژول یا یک ویجت سفارشی).
 
 Retrieving hosts
 Now you have a valid user authentication token that can be used to access the data in Zabbix. For example, you can use the host.get method to retrieve the IDs, host names and interfaces of all the configured hosts:
