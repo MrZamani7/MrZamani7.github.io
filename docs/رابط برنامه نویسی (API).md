@@ -63,7 +63,6 @@ curl --request POST \
 - id - شناسه درخواست مربوطه.
 
 ## نمونه هایی برای آشنایی با گردش کار
-The following section will walk you through some examples of usage in a greater detail.
 
 ### احراز هویت
 برای دسترسی به هر داده ای در زبیکس لازم است یکی از موارد زیر انجام شود:
@@ -114,8 +113,8 @@ curl --request POST \
   --data '{"jsonrpc":"2.0","method":"host.get","params":{"output":["hostid"]},"auth":"0424bd59b807674191e7d77572075f33","id":1}'
 ```
 
-By Zabbix cookie
-A "zbx_session" cookie is used to authorize an API request from Zabbix UI performed using JavaScript (from a module or a custom widget).
+#### به وسیله کوکی های زبیکس
+یک کوکی "zbx_session" جهت مجوز دهی به درخواستِ رابط کاربری زبیکس که توسط جاوااسکریپت پیادی سازی شده است می باشد (از طریق یک ماژول یا یک ویجت سفارشی).
 
 Retrieving hosts
 Now you have a valid user authentication token that can be used to access the data in Zabbix. For example, you can use the host.get method to retrieve the IDs, host names and interfaces of all the configured hosts:
