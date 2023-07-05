@@ -19,6 +19,7 @@ nav_order: 19
 
 ## ساختار
 رابط برنامه نویسی از متدهایی تشکیل شده است که در گروه هایی به صورت APIهایی مجزا دسته بندی شده اند. هر کدام از متدها کار مشخصی انجام می دهد. برای مثال host.create که به گروه host API تعلق دارد برای ایجاد هاست جدید استفاده می شود. سابقا این APIهای زبیکس گاهی اوقات به عنوان "کلاس" نامیده می شوند.
+
 <dl><dt>
 نکته: اکثر APIها دارای حداقل چهار متد هستند: get و create و update و delete به ترتیب برای دریافت، ایجاد، بروزرسانی و حذف اطلاعات استفاده می شوند؛ اما برخی از APIها ممکن است مجموعه کاملا متفاوتی از متدها را شامل شوند.
 </dt></dl>
@@ -40,9 +41,9 @@ curl --request POST \
 
 یک درخواست شامل ویژگی های زیر است:
 
-- jsonrpc - شماره نسخه پروتکل JSON-RPC که توسط API استفاده می شود(رابط برنامه نویسی زبیکس JSON-RPC نسخه 2.0 را اجرا می کند);
-- method - متدی که فراخوانده می شود;
-- params - پارامترهایی که به متد ارسال می شود;
+- jsonrpc - شماره نسخه پروتکل JSON-RPC که توسط API استفاده می شود (رابط برنامه نویسی زبیکس JSON-RPC نسخه 2.0 را اجرا می کند)؛
+- method - متدی که فراخوانده می شود؛
+- params - پارامترهایی که به متد ارسال می شود؛
 - id - یک شناسه دلخواه برای درخواست.
 
 اگر درخواست ارسال شده درست باشد، پاسخ ارسالی از طرف رابط برنامه نویسی باید شبیه زیر باشد:
@@ -57,46 +58,62 @@ curl --request POST \
 
 پاسخ به نوبه خود دارای ویژگی های زیر است:
 
-- jsonrpc - نسخه پروتکل JSON-RPC;
-- result - داده های بازگردانده شده توسط متد;
+- jsonrpc - نسخه پروتکل JSON-RPC؛
+- result - داده های بازگردانده شده توسط متد؛
 - id - شناسه درخواست مربوطه.
 
-Example workflow
+## نمونه هایی برای آشنایی با گردش کار
 The following section will walk you through some examples of usage in a greater detail.
 
-Authentication
-To access any data in Zabbix, you need to either:
+### احراز هویت
+برای دسترسی به هر داده ای در زبیکس لازم است یکی از موارد زیر انجام شود:
 
-use an existing API token (created in Zabbix frontend or using the Token API);
-use an authentication token obtained with the user.login method.
-For example, if you wanted to obtain a new authentication token by logging in as a standard Admin user, then a JSON request would look like this:
+- استفاده از توکن API موجود (ایجاد شده به وسیله رابط کاربری زبیکس یا با استفاده از Token API)؛
+- استفاده از توکنی که به وسیله متد user.login به دست آمده باشد.
 
+برای مثال جهت دستیابی به توکن ورود کاربر Admin، درخواست به فرم JSON شبیه زیر می باشد:
+
+```js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Content-Type: application/json-rpc' \
   --data '{"jsonrpc":"2.0","method":"user.login","params":{"username":"Admin","password":"zabbix"},"id":1}'
-If you provided the credentials correctly, the response returned by the API should contain the user authentication token:
+```
 
+در صورتی که اطلاعات اعتبارسنجی درست باشد پاسخ رابط برنامه نویسی شامل توکن احراز هویت کاربر خواهد بود:
+
+```js
 {
     "jsonrpc": "2.0",
     "result": "0424bd59b807674191e7d77572075f33",
     "id": 1
 }
-Authorization methods
-By "Authorization" header
-All API requests require an authentication or an API token. You can provide the credentials by using the "Authorization" request header:
+```
 
+### روش های کسب مجوز
+#### به وسیله هدر "Authorization"
+تمامی درخواست ها یک احراز هویت و یا یک توکن نیاز دارند. شما می توانید اعتبارسنجی را از طریق هدر "Authorization" فراهم کنید:
+
+```js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Authorization: Bearer 0424bd59b807674191e7d77572075f33'
-By "auth" property
-An API request can be authorized by the "auth" property.
+```
 
-Note that the "auth" property is deprecated. It will be removed in the future releases.
+#### به وسیله ویژگی "auth"
+یک درخواست می تواند به وسیله ویژگی "auth" مجوز کسب کند.
+
+<dl><dt>
+توجه: ویژگی "auth" منسوخ شده است و در انتشارهای آینده حذف خواهد شد.
+</dt></dl>
+
+```js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Content-Type: application/json-rpc' \
   --data '{"jsonrpc":"2.0","method":"host.get","params":{"output":["hostid"]},"auth":"0424bd59b807674191e7d77572075f33","id":1}'
+```
+
 By Zabbix cookie
 A "zbx_session" cookie is used to authorize an API request from Zabbix UI performed using JavaScript (from a module or a custom widget).
 
