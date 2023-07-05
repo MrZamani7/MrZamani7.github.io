@@ -33,26 +33,34 @@ curl --request POST \
   --data '{"jsonrpc":"2.0","method":"apiinfo.version","params":{},"id":1}'
 ```
 
-The request must have the Content-Type header set to one of these values: application/json-rpc, application/json or application/jsonrequest.
+لازم است که درخواست شامل یک هدر Content-Type با یکی از این مقادیر باشد:
+- application/json-rpc
+- application/json
+- application/jsonrequest
 
-The request object contains the following properties:
+یک درخواست شامل ویژگی های زیر است:
 
-jsonrpc - the version of the JSON-RPC protocol used by the API (Zabbix API implements JSON-RPC version 2.0);
-method - the API method being called;
-params - the parameters that will be passed to the API method;
-id - an arbitrary identifier of the request.
-If the request is correct, the response returned by the API should look like this:
+- jsonrpc - شماره نسخه پروتکل JSON-RPC که توسط API استفاده می شود(رابط برنامه نویسی زبیکس JSON-RPC نسخه 2.0 را اجرا می کند);
+- method - متدی که فراخوانده می شود;
+- params - پارامترهایی که به متد ارسال می شود;
+- id - یک شناسه دلخواه برای درخواست.
 
+اگر درخواست ارسال شده درست باشد، پاسخ ارسالی از طرف رابط برنامه نویسی باید شبیه زیر باشد:
+
+```js
 {
     "jsonrpc": "2.0",
     "result": "6.4.0",
     "id": 1
 }
-The response object, in turn, contains the following properties:
+```
 
-jsonrpc - the version of the JSON-RPC protocol;
-result - the data returned by the method;
-id - an identifier of the corresponding request.
+پاسخ به نوبه خود دارای ویژگی های زیر است:
+
+- jsonrpc - نسخه پروتکل JSON-RPC;
+- result - داده های بازگردانده شده توسط متد;
+- id - شناسه درخواست مربوطه.
+
 Example workflow
 The following section will walk you through some examples of usage in a greater detail.
 
