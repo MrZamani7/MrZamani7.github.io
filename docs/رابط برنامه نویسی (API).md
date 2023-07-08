@@ -129,7 +129,7 @@ curl --request POST \
   --data @data.json
 ```
 <dl><dt>
-نکته: data.json فایلی شامل موارد درخواست به فرم JSON می باشد. در عوض استفاده از یک فایل، می توانید در خواست را به وسیله آرگومان --data ارسال کنید.
+نکته: data.json فایلی شامل موارد درخواست به فرم JSON می باشد. در عوضِ استفاده از یک فایل، می توانید درخواست را به وسیله آرگومان data ارسال کنید.
 </dt></dl>
 
 محتویات فایل data.json:
@@ -188,7 +188,7 @@ curl --request POST \
   --data '{"jsonrpc":"2.0","method":"item.create","params":{"name":"Free disk space on /home/joe/","key_":"vfs.fs.size[/home/joe/,free]","hostid":"10084","type":0,"value_type":3,"interfaceid":"1","delay":30},"id":3}'
 ```
 
-یک پاسخ موفقیت آمیز برای درخواست شامل ID آیتم جدید خواهد بود که می تواند برای ارجاع از آن در درخواست پیش رو استفاده کرد:
+یک پاسخ موفقیت آمیز برای درخواست، شامل ID آیتم جدید خواهد بود که می تواند برای ارجاع از آن در درخواست پیش رو استفاده کرد:
 
 ```js
 {
@@ -206,16 +206,20 @@ curl --request POST \
 نکته: متد item.create مانند سایر متند های create می تواند آرایه ای از اشیاء را دریافت و چندین آیتم را با یک بار فراخواندن API ایجاد کند.
 </dt></dl>
 
-Creating multiple triggers
-Thus, if create methods accept arrays, you can add multiple triggers, for example, this one:
+### ایجاد چندین trigger
+از آنجایی که متدهای create آرایه ها را نیز می پذیرند، مانند مثال زیر می توانید چندین trigger اضافه کنید:
 
+```js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Authorization: Bearer ${AUTHORIZATION_TOKEN}' \
   --header 'Content-Type: application/json-rpc' \
   --data '{"jsonrpc":"2.0","method":"trigger.create","params":[{"description":"Processor load is too high on {HOST.NAME}","expression":"last(/Linux server/system.cpu.load[percpu,avg1])>5",},{"description":"Too many processes on {HOST.NAME}","expression":"avg(/Linux server/proc.num[],5m)>300",}],"id":4}'
-The successful response will contain the IDs of the newly created triggers:
+```
 
+یک پاسخ موفقیت آمیز برای درخواست، شامل ID trigger جدید خواهد بود:
+
+```js
 {
     "jsonrpc": "2.0",
     "result": {
@@ -226,16 +230,23 @@ The successful response will contain the IDs of the newly created triggers:
     },
     "id": 4
 }
-Updating an item
-Enable an item by setting its status to "0":
+```
 
+### بروزرسانی یک آیتم
+
+فعال کردن یک آیتم با تنظیم کردن وضعیت آن بر روی "0":
+
+```js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Authorization: Bearer ${AUTHORIZATION_TOKEN}' \
   --header 'Content-Type: application/json-rpc' \
   --data '{"jsonrpc":"2.0","method":"item.update","params":{"itemid":"10092","status":0},"id":5}'
-The successful response will contain the ID of the updated item:
+```
 
+یک پاسخ موفقیت آمیز برای درخواست، شامل ID آیتم بروزرسانی شده خواهد بود:
+
+```js
 {
     "jsonrpc": "2.0",
     "result": {
@@ -245,6 +256,8 @@ The successful response will contain the ID of the updated item:
     },
     "id": 5
 }
+```
+
 The item.update method as well as other update methods can also accept arrays of objects and update multiple items with one API call.
 Updating multiple triggers
 Enable multiple triggers by setting their status to "0":
