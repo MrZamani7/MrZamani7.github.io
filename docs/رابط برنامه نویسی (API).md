@@ -90,7 +90,7 @@ curl --request POST \
 ```
 
 ### روش های کسب مجوز
-#### به وسیله هدر "Authorization"
+#### - به وسیله هدر "Authorization"
 تمامی درخواست ها یک احراز هویت و یا یک توکن نیاز دارند. شما می توانید اعتبارسنجی را از طریق هدر "Authorization" فراهم کنید:
 
 ```js
@@ -99,7 +99,7 @@ curl --request POST \
   --header 'Authorization: Bearer 0424bd59b807674191e7d77572075f33'
 ```
 
-#### به وسیله ویژگی "auth"
+#### - به وسیله ویژگی "auth"
 یک درخواست می تواند به وسیله ویژگی "auth" مجوز کسب کند.
 
 <dl><dt>
@@ -113,8 +113,8 @@ curl --request POST \
   --data '{"jsonrpc":"2.0","method":"host.get","params":{"output":["hostid"]},"auth":"0424bd59b807674191e7d77572075f33","id":1}'
 ```
 
-#### به وسیله کوکی های زبیکس
-یک کوکی "zbx_session" جهت مجوز دهی به درخواستِ رابط کاربری زبیکس که توسط جاوا اسکریپت پیاده سازی شده است می باشد (از طریق یک ماژول یا یک ویجت سفارشی).
+#### - به وسیله کوکی های زبیکس
+یک کوکی (cookie) از "zbx_session" جهت مجوز دهی به درخواستِ رابط کاربری زبیکس که توسط جاوا اسکریپت پیاده سازی شده است مورد استفاده قرار می گیرد (از طریق یک ماژول یا یک ویجت سفارشی).
 
 Retrieving hosts
 Now you have a valid user authentication token that can be used to access the data in Zabbix. For example, you can use the host.get method to retrieve the IDs, host names and interfaces of all the configured hosts:
