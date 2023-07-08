@@ -116,19 +116,25 @@ curl --request POST \
 #### - به وسیله کوکی های زبیکس
 یک کوکی (cookie) از "zbx_session" جهت مجوز دهی به درخواستِ رابط کاربری زبیکس که توسط جاوا اسکریپت پیاده سازی شده است مورد استفاده قرار می گیرد (از طریق یک ماژول یا یک ویجت سفارشی).
 
-Retrieving hosts
-Now you have a valid user authentication token that can be used to access the data in Zabbix. For example, you can use the host.get method to retrieve the IDs, host names and interfaces of all the configured hosts:
+### دستیابی به هاست ها
+حال با داشتن یک توکن معتبر می توان به داده های زبیکس دسترسی پیدا کرد. برای مثال با استفاده از متد host.get می توان IDها و نام هاست ها و اینترفیس های آن ها را دریافت کرد:
 
-Request:
+درخواست:
 
+```js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Authorization: Bearer ${AUTHORIZATION_TOKEN}' \
   --header 'Content-Type: application/json-rpc' \
   --data @data.json
+```
+<dl><dt>
 data.json is a file that contains a JSON query. Instead of a file, you can pass the query in the --data argument.
-data.json
+</dt></dl>
 
+محتویات فایل data.json:
+
+```js
 {
     "jsonrpc": "2.0",
     "method": "host.get",
@@ -144,8 +150,11 @@ data.json
     },
     "id": 2
 }
-The response object will contain the requested data about the hosts:
+```
 
+پاسخ شامل اطلاعات درخواستی از هاست ها خواهد بود:
+
+```js
 {
     "jsonrpc": "2.0",
     "result": [
@@ -162,7 +171,11 @@ The response object will contain the requested data about the hosts:
     ],
     "id": 2
 }
-For performance reasons it is always recommended to list the object properties you want to retrieve. Thus, you will avoid retrieving everything.
+```
+<dl><dt>
+نکته: برای افزایش کارایی و بهبود عملکرد همیشه بهتر است که لیست ویژگی های مورد نیاز برای دریافت را وارد کنید و به این شکل از دریافت تمامی اطلاعات اجتناب نمایید.
+</dt></dl>
+
 Creating a new item
 Now, create a new item on the host "Zabbix server" using the data you have obtained from the previous host.get request. This can be done using the item.create method:
 
