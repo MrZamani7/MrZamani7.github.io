@@ -129,7 +129,7 @@ curl --request POST \
   --data @data.json
 ```
 <dl><dt>
-data.json is a file that contains a JSON query. Instead of a file, you can pass the query in the --data argument.
+نکته: data.json فایلی شامل موارد درخواست به فرم JSON می باشد. در عوض استفاده از یک فایل، می توانید در خواست را به وسیله آرگومان --data ارسال کنید.
 </dt></dl>
 
 محتویات فایل data.json:
@@ -172,20 +172,25 @@ data.json is a file that contains a JSON query. Instead of a file, you can pass 
     "id": 2
 }
 ```
+
 <dl><dt>
 نکته: برای افزایش کارایی و بهبود عملکرد همیشه بهتر است که لیست ویژگی های مورد نیاز برای دریافت را وارد کنید و به این شکل از دریافت تمامی اطلاعات اجتناب نمایید.
 </dt></dl>
 
-Creating a new item
-Now, create a new item on the host "Zabbix server" using the data you have obtained from the previous host.get request. This can be done using the item.create method:
+### ایجاد یک item جدید
+ایجاد یک آیتم جدید بر روی هاست "Zabbix server" با استفاده از اطلاعاتی که در درخواست قبلی بدست آوردید از طریق متد item.create امکان پذیر است:
 
+```js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Authorization: Bearer ${AUTHORIZATION_TOKEN}' \
   --header 'Content-Type: application/json-rpc' \
   --data '{"jsonrpc":"2.0","method":"item.create","params":{"name":"Free disk space on /home/joe/","key_":"vfs.fs.size[/home/joe/,free]","hostid":"10084","type":0,"value_type":3,"interfaceid":"1","delay":30},"id":3}'
-A successful response will contain the ID of the newly created item, which can be used to reference the item in the following requests:
+```
 
+یک پاسخ موفقیت آمیز برای درخواست شامل ID آیتم جدید خواهد بود که می تواند برای ارجاع از آن در درخواست پیش رو استفاده کرد:
+
+```js
 {
     "jsonrpc": "2.0",
     "result": {
@@ -195,7 +200,12 @@ A successful response will contain the ID of the newly created item, which can b
     },
     "id": 3
 }
-The item.create method as well as other create methods can also accept arrays of objects and create multiple items with one API call.
+```
+
+<dl><dt>
+نکته: متد item.create مانند سایر متند های create می تواند آرایه ای از اشیاء را دریافت و چندین آیتم را با یک بار فراخواندن API ایجاد کند.
+</dt></dl>
+
 Creating multiple triggers
 Thus, if create methods accept arrays, you can add multiple triggers, for example, this one:
 
