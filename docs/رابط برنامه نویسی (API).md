@@ -203,7 +203,7 @@ curl --request POST \
 ```
 
 <dl><dt>
-نکته: متد item.create مانند سایر متند های create می تواند آرایه ای از اشیاء را دریافت و چندین آیتم را با یک بار فراخواندن API ایجاد کند.
+نکته: متد item.create مانند سایر متد های create می تواند آرایه ای از اشیاء را دریافت و چندین آیتم را با یک بار فراخواندن API ایجاد کند.
 </dt></dl>
 
 ### ایجاد چندین trigger
@@ -217,7 +217,7 @@ curl --request POST \
   --data '{"jsonrpc":"2.0","method":"trigger.create","params":[{"description":"Processor load is too high on {HOST.NAME}","expression":"last(/Linux server/system.cpu.load[percpu,avg1])>5",},{"description":"Too many processes on {HOST.NAME}","expression":"avg(/Linux server/proc.num[],5m)>300",}],"id":4}'
 ```
 
-یک پاسخ موفقیت آمیز برای درخواست، شامل ID trigger جدید خواهد بود:
+یک پاسخ موفقیت آمیز برای این درخواست، شامل IDهای تریگرهای جدید خواهد بود:
 
 ```js
 {
@@ -244,7 +244,7 @@ curl --request POST \
   --data '{"jsonrpc":"2.0","method":"item.update","params":{"itemid":"10092","status":0},"id":5}'
 ```
 
-یک پاسخ موفقیت آمیز برای درخواست، شامل ID آیتم بروزرسانی شده خواهد بود:
+یک پاسخ موفقیت آمیز برای این درخواست، شامل ID آیتم بروزرسانی شده خواهد بود:
 
 ```js
 {
@@ -258,17 +258,24 @@ curl --request POST \
 }
 ```
 
-The item.update method as well as other update methods can also accept arrays of objects and update multiple items with one API call.
-Updating multiple triggers
-Enable multiple triggers by setting their status to "0":
+<dl><dt>
+نکته: متد item.update مانند سایر متد های update نیز می تواند آرایه ای از اشیاء را دریافت و چندین آیتم را با یک بار فراخواندن API بروزرسانی کند.
+</dt></dl>
 
+### بروزرسانی چندین تریگر
+فعال کردن یک تریگر با تنظیم کردن وضعیت آن بر روی "0":
+
+```js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Authorization: Bearer ${AUTHORIZATION_TOKEN}' \
   --header 'Content-Type: application/json-rpc' \
   --data '{"jsonrpc":"2.0","method":"trigger.update","params":[{"triggerid":"13938","status":0},{"triggerid":"13939","status":0}],"id":6}'
-The successful response will contain the IDs of the updated triggers:
+```
 
+یک پاسخ موفقیت آمیز برای این درخواست، شامل IDهای تریگرهای بروزرسانی شده خواهد بود:
+
+```js
 {
     "jsonrpc": "2.0",
     "result": {
@@ -279,17 +286,25 @@ The successful response will contain the IDs of the updated triggers:
     },
     "id": 6
 }
-This is the preferred method of updating. Some API methods, such as the host.massupdate allow to write a simpler code. However, it is not recommended to use these methods as they will be removed in the future releases.
-Error handling
-Up to the present moment, everything you have tried has worked fine. But what would happen if you tried making an incorrect call to the API? Try to create another host by calling host.create but omitting the mandatory groups parameter:
+```
 
+<dl><dt>
+نکته: این روش برای به روز رسانی ترجیح داده می شود. برخی متدها مانند host.massupdate اجازه نوشتن کدهای ساده تری می دهند. اگرچه استفاده از آن متدها پیشنهاد نمی شود زیرا در انتشارهای بعدی حذف خواهند شد.
+
+### رسیدگی به خطا
+ایجاد یک هاست دیگر با فراخوانی متد host.create اما این بار با حذف پارامترهای اجباری گروه ها:
+
+```js
 curl --request POST \
   --url 'https://example.com/zabbix/api_jsonrpc.php' \
   --header 'Authorization: Bearer ${AUTHORIZATION_TOKEN}' \
   --header 'Content-Type: application/json-rpc' \
   --data '{"jsonrpc":"2.0","method":"host.create","params":{"host":"Linux server","interfaces":[{"type":1,"main":1,"useip":1,"ip":"192.168.3.1","dns":"","port":"10050"}]},"id":7}'
-The response will then contain an error message:
+```
 
+پاسخ شامل پیام خطا خواهد بود:
+
+```js
 {
     "jsonrpc": "2.0",
     "error": {
@@ -299,12 +314,15 @@ The response will then contain an error message:
     },
     "id": 7
 }
-If an error has occurred, instead of the result property, the response object will contain the error property with the following data:
+```
 
-code - an error code;
-message - a short error summary;
-data - a more detailed error message.
-Errors can occur in various cases, such as, using incorrect input values, a session timeout or trying to access non-existing objects. Your application should be able to gracefully handle these kinds of errors.
+اگر یک خطا رخ دهد، به جای ویژگی result، در پاسخ ویژگی error به همراه اطلاعات زیر وجود خواهد داشت:
+
+- code - کد خطا؛
+- message - خلاصه خطا؛
+- data - توضیحات بیشتر در مورد خطا.
+
+خطاها تحت شرایط مختلفی مانند استفاده از مقادیر ورودی نادرست، پایان مدت زمان نشست یا تلاش برای دسترسی به موارد ناموجود اتفاق می افتند. برنامه شما باید بتواند به خوبی این نوع خطاها را مدیریت کند.
 
 API versions
 To simplify API versioning, since Zabbix 2.0.4, the version of the API matches the version of Zabbix itself. You can use the apiinfo.version method to find out the version of the API you are working with. This can be useful for adjusting your application to use version-specific features.
