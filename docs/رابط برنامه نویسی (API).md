@@ -325,11 +325,7 @@ curl --request POST \
 
 خطاها تحت شرایط مختلفی مانند استفاده از مقادیر ورودی نادرست، پایان مدت زمان نشست یا تلاش برای دسترسی به موارد ناموجود اتفاق می افتند. برنامه شما باید بتواند به خوبی این نوع خطاها را مدیریت کند.
 
-API versions
-To simplify API versioning, since Zabbix 2.0.4, the version of the API matches the version of Zabbix itself. You can use the apiinfo.version method to find out the version of the API you are working with. This can be useful for adjusting your application to use version-specific features.
+## نسخه های API
+برای ساده سازی نامگذاری نسخه های API، از ربیکس نسخه 2.0.4، شماره نسخه API با شماره نسخه زبیکس یکسان تعیین شد. با استفاده از متد apiinfo.version می توانید نسخه API که با آن کار می کنید به دست آورید. این مورد می تواند در هنگام تنظیم کردن برنامه تان برای استفاده از قابلیت های مختص به هر نسخه از زبیکس مفید واقع شود.
 
-Zabbix guaranties feature backward compatibility inside a major version. When making backward incompatible changes between major releases, Zabbix usually leaves the old features as deprecated in the next release, and only removes them in the release after that. Occasionally, Zabbix may remove features between major releases without providing any backward compatibility. It is important that you never rely on any deprecated features and migrate to newer alternatives as soon as possible.
-
-You can follow all the changes made to the API in the API changelog.
-Further reading
-Now, you have enough knowledge to start working with the Zabbix API, however, do not stop here. For further reading you are advised to have a look at the list of available APIs.
+زبیکس در نسخه های اصلی (major) سازگاری با قابلیت های نسخه ی پیشین را ضمانت می کند. در صورت اعمال تغییرات ناسازگار با نسخه پیشین در یک انتشار اصلی، زبیکس معمولا ویژگی های قدیمی را به صورت منسوخ شده (deprecated) در انتشار جدید ارائه می کند و آن ها را در یک انتشار پس از آن حذف می کند. برخی اوقات ممکن است زبیکس ویژگی هایی را بدون رعایت سازگاری در انتشار جدید حذف کند. بنابراین مهم است که هیچگاه به ویژگی های منسوخ شده تکیه نکنید و هر چه سریع تر به جایگزین های جدید مهاجرت کنید.
